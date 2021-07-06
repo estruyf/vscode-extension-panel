@@ -2,6 +2,8 @@
 
 An extension that provides an activity panel that other extensions can use to add their actions. When you want to visualize your command or extension actions, this extension provides a quick and easy way to do this. Instead of writing your view panel, you register your extension for panel usage with the required configuration.
 
+![sample](./assets/sample.png)
+
 ## Usage
 
 ### Extension dependency
