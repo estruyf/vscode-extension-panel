@@ -33,7 +33,8 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./dist/extension",
+	"main": "./out/desktop/extension.js",
+	"browser": "./out/web/extension.js",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
@@ -57,9 +58,12 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run clean && webpack --mode production",
-		"build:ext": "webpack --mode development",
+		"vscode:prepublish": "npm run clean && npm run compile",
+		"compile": "npm-run-all --parallel build:*",
+		"build:ext": "webpack --mode production",
+		"build:browser": "webpack --mode production --config ./webpack.browser.config.js",
 		"dev:ext": "webpack --mode development --watch",
+		"dev:browser": "webpack --mode development --watch --config ./webpack.browser.config.js",
 		"test-compile": "tsc -p ./",
 		"clean": "rm -rf dist"
 	},
@@ -75,14 +79,16 @@
 		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
+		"process": "^0.11.10",
 		"ts-loader": "8.0.3",
 		"typescript": "^4.3.2",
 		"vscode-test": "^1.5.2",
-		"webpack": "4.46.0",
-		"webpack-cli": "3.3.12"
+		"webpack": "^5.70.0",
+		"webpack-cli": "^4.9.2"
 	},
 	"dependencies": {
-		"@bendera/vscode-webview-elements": "0.3.1",
+		"@bendera/vscode-webview-elements": "^0.7.0",
+		"npm-run-all": "^4.1.5",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"wc-react": "0.5.0"

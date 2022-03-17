@@ -10,7 +10,7 @@ module.exports = [
     target: 'node',
     entry: './src/extension.ts',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'out/desktop'),
       filename: 'extension.js',
       libraryTarget: 'commonjs2',
       devtoolModuleFilenameTemplate: '../[resource-path]'
@@ -29,6 +29,12 @@ module.exports = [
         use: [{
           loader: 'ts-loader'
         }]
+      },
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false
+        }
       }]
     },
     performance: {
@@ -55,6 +61,12 @@ module.exports = [
         use: [{
           loader: 'ts-loader'
         }]
+      },
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false
+        }
       }]
     },
     performance: {
